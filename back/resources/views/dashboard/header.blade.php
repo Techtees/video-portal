@@ -1,37 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.png">
-
-    <title>Circle Video | Signup Page</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Theme CSS -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/font-circle-video.css" rel="stylesheet">
-
-    <!-- font-family: 'Hind', sans-serif; -->
-    <link href='https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700|Hind+Guntur:300,400,500,700' rel='stylesheet' type='text/css'>
-</head>
-
-<body class="light">
-
 <!-- logo, menu, search, avatar -->
 <div class="container-fluid">
     <div class="row">
         <div class="btn-color-toggle">
             <img src="images/icon_bulb_light.png" alt="">
         </div>
-        <div class="navbar-container single">
+        <div class="navbar-container">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-3 visible-xs">
@@ -92,12 +65,32 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-lg-2 col-sm-12 hidden-xs">
-                        <div class="loginsignup pull-right">
-                            <a href="login.html">Login</a> . <a href="signup.html">Signup</a>
+                    <div class="col-lg-2 col-sm-4 hidden-xs">
+                        <div class="avatar pull-left">
+                            <img src="images/avatar.png" alt="avatar" />
+                            <span class="status"></span>
+                        </div>
+                        <div class="selectuser pull-left">
+                            <div class="btn-group pull-right dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Bailey
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="signup.html">Sign up</a></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
+                </div>
+                <div class="hidden-xs">
+                    <a href="upload.html">
+                        <div class="upload-button">
+                            <i class="cv cvicon-cv-upload-video"></i>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -193,138 +186,43 @@
     </div>
 </div>
 
-<div class="container-fluid bg-image">
+<!-- goto -->
+<div class="container-fluid">
     <div class="row">
-        <div class="login-wraper">
-            <div class="hidden-xs">
-                <img src="images/login.jpg" alt="">
-            </div>
-            <div class="banner-text hidden-xs">
-                <div class="line"></div>
-                <div class="b-text">
-                    Watch <span class="color-active">millions<br> of</span> <span class="color-b1">v</span><span class="color-b2">i</span><span class="color-b3">de</span><span class="color-active">os</span> for free.
-                </div>
-                <div class="overtext">
-                    Over 6000 videos uploaded Daily.
-                </div>
-            </div>
-            <div class="login-window">
-                <div class="l-head">
-                    Sign Up for Free
-                </div>
-                <div class="l-form">
-                    <form action="http://azyrusthemes.com/circlevideo/signup.html">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="sample@gmail.com">
+        <div class="navbar-container2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1 col-sm-2 hidden-xs">
+                        <div class="goto">
+                            Go to:
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="**********">
+                    </div>
+                    <div class="col-lg-3  col-sm-10 col-xs-12">
+                        <div class="h-icons">
+                            <a href="#"><i class="cv cvicon-cv-liked" data-toggle="tooltip" data-placement="top" title="Liked Videos"></i></a>
+                            <a href="#"><i class="cv cvicon-cv-watch-later" data-toggle="tooltip" data-placement="top" title="Watch Later"></i></a>
+                            <a href="#"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="Saved Playlist"></i></a>
+                            <a href="#"><i class="cv cvicon-cv-purchased" data-toggle="tooltip" data-placement="top" title="Purchased Videos"></i></a>
+                            <a href="#"><i class="cv cvicon-cv-history" data-toggle="tooltip" data-placement="top" title="History"></i></a>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword2">Re-type Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="**********">
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Sign Up</button></div>
-                            <div class="hidden-xs">
-                                <div class="col-lg-1 ortext">or</div>
-                                <div class="col-lg-4 signuptext"><a href="login.html">Log In</a></div>
+                    </div>
+                    <div class="col-lg-7 col-sm-10 hidden-xs">
+                        <div class="h-resume">
+                            <div class="play-icon">
+                                <a href="#"><i class="cv cvicon-cv-play"></i></a>
                             </div>
+                            Resume:  <span class="color-default">Daredevil Season 2 : Episode 6 </span>
                         </div>
-                        <div class="row hidden-xs">
-                            <div class="col-lg-12 forgottext">
-                                <a href="#">By clicking "Sign Up" I agree to circle's Terms of Service.</a>
-                            </div>
+                    </div>
+                    <div class="col-lg-1 col-sm-2 hidden-xs">
+                        <div class="h-grid">
+                            <a href="#"><i class="cv cvicon-cv-grid-view"></i></a>
+                            <a href="#"><i class="cv cvicon-cv-list-view"></i></a>
                         </div>
-                        <div class="visible-xs text-center mt-30">
-                            <span class="forgottext"><a href="#">Already have an account?</a></span>
-                            <span class="signuptext"><a href="#">Login here</a></span>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<!-- footer -->
-<footer>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="container padding-def">
-                <div class="col-lg-1  col-sm-2 col-xs-12 footer-logo">
-                    <!--<a class="navbar-brand" href="index.html"><img src="images/logo.svg" alt="Project name" class="logo" /></a>-->
-                    <a class="navbar-brand" href="index-2.html">
-                        <img src="images/logo.svg" alt="Project name" class="logo" />
-                        <span>Circle</span>
-                    </a>
-                </div>
-                <div class="col-lg-7 col-sm-6 col-xs-12">
-                    <div class="f-links">
-                        <ul class="list-inline">
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Press</a></li>
-                            <li><a href="#">Copyright</a></li>
-                            <li><a href="#">Advertise</a></li>
-                            <li class="hidden-xs"><a href="#">Help</a></li>
-                        </ul>
-                    </div>
-                    <div class="delimiter"></div>
-                </div>
-                <div class="col-lg-7 col-sm-6 col-xs-12">
-                    <div class="f-copy">
-                        <ul class="list-inline">
-                            <li><a href="#">Terms</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li>Copyrights 2016 <a href="azyrusthemes.html" class="hidden-xs">azyrusthemes.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-offset-1 col-lg-3 col-sm-4 col-xs-12">
-                    <div class="f-last-line">
-                        <div class="f-icon pull-left">
-                            <a href="#"><i class="fa fa-facebook-square"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                        <div class="f-lang pull-right">
-                            <!-- Small button group -->
-                            <div class="btn-group dropup pull-right">
-                                <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Language <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
-                                    <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
-                                    <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
-                                    <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
-                                    <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="delimiter visible-xs"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- /footer -->
-
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/custom.js"></script>
-
-</body>
-
-
-</html>
+<!-- /goto -->

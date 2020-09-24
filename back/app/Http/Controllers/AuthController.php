@@ -41,18 +41,8 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $rules = [
-            'surname' => 'required',
-            'name' => 'required',
             'email' => 'required|max:255|email|unique:users,email',
-            'password' => 'required|min:6',
-            "company_name" => 'required',
-            "address" => 'required',
-            "zip_code" => 'required',
-            "city" => 'required',
-            "phone" => 'required',
-            "bank_name" => 'required',
-            "iban" => 'required',
-            "ibic" => 'required',
+            'password' => 'required|min:6'
         ];
 
         $this->validate($request, $rules);
@@ -60,15 +50,12 @@ class AuthController extends Controller
         try {
             # create data
             $data = [
-                "surname" => $request->get('surname'),
-                "name" => $request->get('name'),
                 "email" => $request->get('email'),
                 "password" => $request->get('password'),
             ];
 
             # hash password
             $data["password"] = Hash::make($data["password"]);
-            $data["role"] = "affliate";
 
             # create user
             $user = $this->userService->create($data);

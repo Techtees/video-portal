@@ -17,7 +17,7 @@ Route::get(
     '/',
     function () {
         // return redirect( route('login') );
-        return view('layouts.app');
+        return view('dashboard.template1');
     }
 );
 

@@ -1,109 +1,73 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Register
+  SignUp Page
 @endsection
 
 @section('content')
-<div class="card-body p-0">
-  <!-- Nested Row within Card Body -->
+<div class="container-fluid bg-image">
   <div class="row">
-    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-    <div class="col-lg-7">
-      <div class="p-5">
-        <div class="text-center">
-          <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-        </div>
-        @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
+      <div class="login-wraper">
+          <div class="hidden-xs">
+              <img src="images/login.jpg" alt="">
           </div>
-        @endif
-        <form class="user"  action="{{route('auth.register')}}" method="POST">
-          @csrf
-          <div class="form-group">
-            <input type="text" class="form-control form-control-user" id="company_name" name="company_name"
-              placeholder="Company Name" value="{{ old('company_name') }}" required>
+          <div class="banner-text hidden-xs">
+              <div class="line"></div>
+              <div class="b-text">
+                  Watch <span class="color-active">millions<br> of</span> <span class="color-b1">v</span><span class="color-b2">i</span><span class="color-b3">de</span><span class="color-active">os</span> for free.
+              </div>
+              <div class="overtext">
+                  Over 6000 videos uploaded Daily.
+              </div>
           </div>
-          <div class="form-group">
-            <input type="text" class="form-control form-control-user" id="address" name="address"
-              placeholder="Address" value="{{ old('address') }}" required>
+          <div class="login-window">
+              <div class="l-head">
+                  Sign Up for Free
+              </div>
+              <div class="l-form">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                  <form action="{{route('auth.register')}}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="sample@gmail.com" value="{{ old('email') }}" name="email">
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="**********" value="{{ old('password') }}" name="password">
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleInputPassword2">Re-type Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword2" placeholder="**********" value="{{ old('password_confirmation') }}" name="password_confirmation">
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Sign Up</button></div>
+                          <div class="hidden-xs">
+                              <div class="col-lg-1 ortext">or</div>
+                              <div class="col-lg-4 signuptext"><a href="{{route('login')}}">Log In</a></div>
+                          </div>
+                      </div>
+                      <div class="row hidden-xs">
+                          <div class="col-lg-12 forgottext">
+                              <a href="#">By clicking "Sign Up" I agree to circle's Terms of Service.</a>
+                          </div>
+                      </div>
+                      <div class="visible-xs text-center mt-30">
+                          <span class="forgottext"><a href="{{route('login')}}">Already have an account?</a></span>
+                          <span class="signuptext"><a href="{{route('login')}}">Login here</a></span>
+                      </div>
+                  </form>
+              </div>
           </div>
-          <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <input type="text" class="form-control form-control-user" id="zip_code" name="zip_code"
-                placeholder="Zip Code" value="{{ old('zip_code') }}" required>
-            </div>
-            <div class="col-sm-6">
-              <input type="text" class="form-control form-control-user" id="city" name="city"
-                placeholder="City" value="{{ old('city') }}" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <input type="text" class="form-control form-control-user" id="name" name="name"
-                placeholder="Name" value="{{ old('name') }}" required>
-            </div>
-            <div class="col-sm-6">
-              <input type="text" class="form-control form-control-user" id="surname" name="surname"
-                placeholder="Surname" value="{{ old('surname') }}" required>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <input type="email" class="form-control form-control-user" id="email" name="email"
-                placeholder="Email" value="{{ old('email') }}" required>
-            </div>
-            <div class="col-sm-6">
-              <input type="password" class="form-control form-control-user" id="password" name="password"
-                placeholder="Password" value="{{ old('password') }}" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control form-control-user" id="phone" name="phone"
-              placeholder="Phone" value="{{ old('phone') }}" required>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control form-control-user" id="bank_name" name="bank_name"
-              placeholder="Bank Name" value="{{ old('bank_name') }}" required>
-          </div>
-          <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <input type="text" class="form-control form-control-user" id="iban" name="iban"
-                placeholder="IBAN" value="{{ old('iban') }}" required>
-            </div>
-            <div class="col-sm-6">
-              <input type="text" class="form-control form-control-user" id="ibic" name="ibic"
-                placeholder="IBIC" value="{{ old('ibic') }}" required>
-            </div>
-          </div>
-          <div>
-           <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"
-          >  <span style="font-size: 13px;"> I Agree 
-         Terms & Coditions </span>
-          </div>
-          <br>
-          <button type="submit" id="submit" class="btn btn-primary btn-user btn-block" disabled onclick="this.disabled=true" ondblclick="this.disabled=true">Register Account</button>
-          <hr>
-        </form>
-        <div class="text-center">
-          <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
-        </div>
       </div>
-    </div>
   </div>
 </div>
-<script>
-  function activateButton(element) {
-      if (element.checked) {
-          document.getElementById("submit").disabled = false;
-      } else {
-          document.getElementById("submit").disabled = true;
-      }
-  }
-</script>
 @endsection
