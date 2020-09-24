@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="btn-color-toggle">
-            <img src="images/icon_bulb_light.png" alt="">
+            <img src="{{asset('images/icon_bulb_light.png') }}" alt="">
         </div>
         <div class="navbar-container">
             <div class="container">
@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-lg-1 col-sm-2 col-xs-6">
                         <a class="navbar-brand" href="index-2.html">
-                            <img src="images/logo.svg" alt="Project name" class="logo" />
+                            <img src="{{asset('images/logo.svg') }}" alt="Project name" class="logo" />
                             <span>Circle</span>
                         </a>
                     </div>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-lg-2 col-sm-4 hidden-xs">
                         <div class="avatar pull-left">
-                            <img src="images/avatar.png" alt="avatar" />
+                            <img src="{{asset('images/avatar.png') }}" alt="avatar" />
                             <span class="status"></span>
                         </div>
                         <div class="selectuser pull-left">
@@ -102,17 +102,17 @@
     <div class="mobile-menu-head">
         <a href="#" class="mobile-menu-close"></a>
         <a class="navbar-brand" href="index-2.html">
-            <img src="images/logo.svg" alt="Project name" class="logo" />
+            <img src="{{asset('images/logo.svg') }}" alt="Project name" class="logo" />
             <span>Circle</span>
         </a>
         <div class="mobile-menu-btn-color">
-            <img src="images/icon_bulb_light.png" alt="">
+            <img src="{{asset('images/icon_bulb_light.png') }}" alt="">
         </div>
     </div>
     <div class="mobile-menu-content">
         <div class="mobile-menu-user">
             <div class="mobile-menu-user-img">
-                <img src="images/ava11.png" alt="">
+                <img src="{{asset('images/ava11.png') }}" alt="">
             </div>
             <p>Bailey Fry </p>
             <span class="caret"></span>
