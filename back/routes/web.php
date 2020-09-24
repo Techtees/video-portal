@@ -17,7 +17,7 @@ Route::get(
     '/',
     function () {
         // return redirect( route('login') );
-        return view('dashboard.template1');
+        return view('dashboard.video-single');
     }
 );
 

@@ -187,7 +187,7 @@
 </div>
 
 <!-- goto -->
-<div class="container-fluid">
+<div class="container-fluid hidden-xs">
     <div class="row">
         <div class="navbar-container2">
             <div class="container">
