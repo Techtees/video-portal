@@ -37,33 +37,37 @@
                   <form action="{{route('auth.register')}}" method="POST">
                         @csrf
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Email</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="sample@gmail.com" value="{{ old('email') }}" name="email">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleInputPassword1">Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="**********" value="{{ old('password') }}" name="password">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleInputPassword2">Re-type Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword2" placeholder="**********" value="{{ old('password_confirmation') }}" name="password_confirmation">
-                      </div>
-                      <div class="row">
-                          <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Sign Up</button></div>
-                          <div class="hidden-xs">
-                              <div class="col-lg-1 ortext">or</div>
-                              <div class="col-lg-4 signuptext"><a href="{{route('login')}}">Log In</a></div>
-                          </div>
-                      </div>
-                      <div class="row hidden-xs">
-                          <div class="col-lg-12 forgottext">
-                              <a href="#">By clicking "Sign Up" I agree to circle's Terms of Service.</a>
-                          </div>
-                      </div>
-                      <div class="visible-xs text-center mt-30">
-                          <span class="forgottext"><a href="{{route('login')}}">Already have an account?</a></span>
-                          <span class="signuptext"><a href="{{route('login')}}">Login here</a></span>
-                      </div>
+                            <label for="exampleInputName1">Full Name</label>
+                            <input type="text" class="form-control" id="exampleInputName1" placeholder="John Doe" value="{{ old('name') }}" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="sample@gmail.com" value="{{ old('email') }}" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="**********" value="{{ old('password') }}" name="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword2">Re-type Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="**********" value="{{ old('password_confirmation') }}" name="password_confirmation">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7"><button type="submit" class="btn btn-cv1">Sign Up</button></div>
+                            <div class="hidden-xs">
+                                <div class="col-lg-1 ortext">or</div>
+                                <div class="col-lg-4 signuptext"><a href="{{route('login')}}">Log In</a></div>
+                            </div>
+                        </div>
+                        <div class="row hidden-xs">
+                            <div class="col-lg-12 forgottext">
+                                <a href="#">By clicking "Sign Up" I agree to circle's Terms of Service.</a>
+                            </div>
+                        </div>
+                        <div class="visible-xs text-center mt-30">
+                            <span class="forgottext"><a href="{{route('login')}}">Already have an account?</a></span>
+                            <span class="signuptext"><a href="{{route('login')}}">Login here</a></span>
+                        </div>
                   </form>
               </div>
           </div>

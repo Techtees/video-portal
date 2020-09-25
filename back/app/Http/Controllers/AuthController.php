@@ -6,17 +6,19 @@ use App\User;
 use App\Customer;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Services\VideoService;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    protected $userService;
+    protected $userService, $videoService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, VideoService $videoService)
     {
         $this->userService = $userService;
+        $this->videoService = $videoService;
     }
 
     public function login(LoginRequest $request)
@@ -27,7 +29,7 @@ class AuthController extends Controller
             # attempt login
             if (Auth::attempt($credentials)) {
                 # Authentication passed...
-                $success = "Welcome Admin";
+                $success = "Welcome";
                 return redirect()->intended('dashboard')->with(['data' => $success]);
             }
             else{
@@ -41,6 +43,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $rules = [
+            'name' => 'required',
             'email' => 'required|max:255|email|unique:users,email',
             'password' => 'required|min:6'
         ];
@@ -50,6 +53,7 @@ class AuthController extends Controller
         try {
             # create data
             $data = [
+                "name" => $request->get('name'),
                 "email" => $request->get('email'),
                 "password" => $request->get('password'),
             ];
@@ -79,6 +83,7 @@ class AuthController extends Controller
 
     public function index()
     {
-       
+        $videos = $this->videoService->index();
+        return view('dashboard.home', compact('videos'));
     }
 }
