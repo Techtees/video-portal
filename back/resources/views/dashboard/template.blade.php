@@ -27,7 +27,7 @@
     @yield('css')
 </head>
 
-<body class="@if(Request::route()->getName() == 'videos.show') single-video  @endif light">
+<body class="@if(Request::route()->getName() == 'videos.show') single-video  @endif @if(Request::route()->getName() == 'channel.videos') channel @endif light">
 
     @include('dashboard.header')
 

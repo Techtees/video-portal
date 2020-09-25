@@ -56,4 +56,9 @@ class VideoService
 
         return $data;
     }
+
+    public function findUserVideos(int $user_id)
+    {
+        return Video::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+    }
 }

@@ -16,7 +16,7 @@ class Video extends Model
      * @var array
      */
     protected $fillable = [
-        'source', 'user_id', 'video', 'title', 'description', 'reference', 'views', 'thumbnail'
+        'source', 'user_id', 'video', 'title', 'description', 'reference', 'views', 'thumbnail', 'youtube'
     ];
 
     protected $appends = [

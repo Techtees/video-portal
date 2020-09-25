@@ -47,12 +47,14 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = [
-                "source" => $request->get('source')
-            ];
+            $data = [];
 
             if($request->has('video')){
                 $data['video'] = $request->video->store('');
+                $data['source'] = "file";
+            }else {
+                $data['youtube'] = $request->get('youtube');
+                $data['source'] = "youtube";
             }
 
             $data["user_id"] = auth()->user()->id;

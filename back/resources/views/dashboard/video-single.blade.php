@@ -17,10 +17,15 @@
         <div class="row">
             <div class="col-lg-8 col-xs-12 col-sm-12">
                 <div class="sv-video">
-                    
-                    <video poster="{{$video->thumbnail}}" style="width:100%;height:100%;" controls="controls" width="100%" height="100%">
-                        <source src="{{$video->video}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
-                    </video>
+                    @if($video->source == 'file')
+                        <video poster="{{$video->thumbnail}}" style="width:100%;height:100%;" controls="controls" width="100%" height="100%">
+                            <source src="{{$video->video}}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+                        </video>
+                    @else 
+                        <div class="video-responsive">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/9LgeDcu-oho" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    @endif
                 </div>
                 <h1><a href="#">{{$video->title}}</a></h1>
                 <div class="acide-panel acide-panel-top">
@@ -46,9 +51,8 @@
                             <div class="sv-views-progress-bar"></div>
                         </div>
                         <div class="sv-views-stats">
-                            <span class="percent">95%</span>
-                            <span class="green"><span class="circle"></span> 39,852</span>
-                            <span class="grey"><span class="circle"></span> 852</span>
+                            <span class="percent">100%</span>
+                            <span class="green"><span class="circle"></span> {{$video->views}}</span>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -58,7 +62,7 @@
                         <h4>About :</h4>
                         <p>{{$video->description}}</p>
 
-                        <h4>About :</h4>
+                        <h4>Reference :</h4>
                         <p>{{$video->reference}}</p>
 
                         <div class="row date-lic">
@@ -120,16 +124,16 @@
                                         <div class="h-video row">
                                             <div class="col-sm-12 col-xs-6">
                                                 <div class="v-img">
-                                                    <a href="{{route('videos.show', ['video' => $upnext_video->encoded_Id])}}"><img src="{{asset('images/sv-12.png')}}" alt=""></a>
+                                                    <a href="{{route('videos.show', ['video' => $upnext_video->encoded_Id])}}"><img src="{{$upnext_video->thumbnail}}" alt="{{$upnext_video->title}}" style="width:170px;height:117px"></a>
                                                     <div class="time">7:18</div>
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-xs-6">
                                                 <div class="v-desc">
-                                                    <a href="{{route('videos.show', ['video' => $upnext_video->encoded_Id])}}">3DS Games Of 2016 that blew our mind</a>
+                                                    <a href="{{route('videos.show', ['video' => $upnext_video->encoded_Id])}}">{{$upnext_video->title}}</a>
                                                 </div>
                                                 <div class="v-views">
-                                                    630,347 views
+                                                    {{$upnext_video->views}} views
                                                 </div>
                                             </div>
                                         </div>
@@ -235,7 +239,7 @@
                         <div class="h-video row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="v-img">
-                                    <a href="{{route('videos.show', ['video' => $upnext_video->encoded_Id])}}"><img src="{{asset('images/sv-1.png') }}" alt=""></a>
+                                    <a href="{{route('videos.show', ['video' => $upnext_video->encoded_Id])}}"><img src="{{$upnext_video->thumbnail}}" alt="{{$upnext_video->title}}" style="width:270px;height:169px "></a>
                                     <div class="time">15:19</div>
                                 </div>
                             </div>
@@ -244,7 +248,7 @@
                                     <a href="{{route('videos.show', ['video' => $upnext_video->encoded_Id])}}">{{$upnext_video->title}}</a>
                                 </div>
                                 <div class="v-views">
-                                    2,729,347 views
+                                    {{$upnext_video->views}} views
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -281,7 +285,7 @@
                         <div class="h-video row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="v-img">
-                                    <a href="{{route('videos.show', ['video' => $recommended_video->encoded_Id])}}"><img src="{{asset('images/sv-4.png') }}" alt=""></a>
+                                    <a href="{{route('videos.show', ['video' => $recommended_video->encoded_Id])}}"><img src="{{$recommended_video->thumbnail}}" alt="{{$recommended_video->title}}" style="width:170px;height:117px "></a>
                                     <div class="time">15:19</div>
                                 </div>
                             </div>
@@ -290,7 +294,7 @@
                                     <a href="{{route('videos.show', ['video' => $recommended_video->encoded_Id])}}">{{$recommended_video->title}}</a>
                                 </div>
                                 <div class="v-views">
-                                    2,729,347 views
+                                    {{$recommended_video->views}} views
                                 </div>
                             </div>
                             <div class="clearfix"></div>

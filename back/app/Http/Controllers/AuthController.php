@@ -86,4 +86,12 @@ class AuthController extends Controller
         $videos = $this->videoService->index();
         return view('dashboard.home', compact('videos'));
     }
+
+    public function channelVideos($user)
+    {
+        $user = decodeId($user);
+        $videos = $this->videoService->findUserVideos($user);
+        $user = $this->userService->find($user);
+        return view('dashboard.channel', compact('user', 'videos'));
+    }
 }

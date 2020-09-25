@@ -50,14 +50,14 @@
                                 <div class="col-lg-3 col-sm-6 videoitem">
                                     <div class="b-video">
                                         <div class="v-img">
-                                            <a href="{{route('videos.show', ['video' => $video->encoded_Id])}}"><img src="{{$video->thumbnail}}" alt="" style="width:270px;height:169px "></a>
+                                            <a href="{{route('videos.show', ['video' => $video->encoded_Id])}}"><img src="{{$video->thumbnail}}" alt="{{$video->title}}" style="width:270px;height:169px "></a>
                                             <div class="time">3:50</div>
                                         </div>
                                         <div class="v-desc">
                                             <a href="{{route('videos.show', ['video' => $video->encoded_Id])}}">{{$video->title}}</a>
                                         </div>
                                         <div class="v-views">
-                                            27,548 views. 
+                                            {{$video->views}} views. 
                                         </div>
                                     </div>
                                 </div>

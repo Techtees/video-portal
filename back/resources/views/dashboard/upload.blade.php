@@ -11,15 +11,15 @@
             <div class="col-lg-12 upload-page">
 
                 <div class="u-area">
-                    <i class="cv cvicon-cv-upload-video"></i>
-
-                    <p class="u-text1">Select Video files to upload</p>
-                    <p class="u-text2">or drag and drop video files</p>
-
                     <form method="POST" action="{{ route('videos.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" class="form-control" id="file-input" name="video">
-                        <input type="text" class="form-control" value="file" name="source">
+                    <i class="cv cvicon-cv-upload-video " onclick="openFileOption();return;"></i>
+                        <input type="file" id="file1" style="display:none" name="video"> 
+                    <p class="u-text1">Select Video files to upload</p>
+                    <p class="u-text2">or enter youtube link</p>
+                    <div class="form-group">
+                        <input type="text"  id="" placeholder="https://www.youtube.com/watch?v=W8NUoz6Yd4Y">
+                    </div>
                         <button type="submit" class="btn btn-primary u-btn">Upload Video</button>
                     </form>
                 </div>
@@ -32,4 +32,13 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    function openFileOption()
+    {
+        document.getElementById("file1").click();
+    }
+ </script>
 @endsection

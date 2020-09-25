@@ -19,12 +19,11 @@
                     <div class="col-lg-3 col-sm-10 hidden-xs">
                         <ul class="list-inline menu">
                             <li class="@if(Request::route()->getName() == 'backend.dashboard') color-active @endif"><a href="{{route('backend.dashboard')}}">Home</a></li>
-                            <li><a href="categories.html">Categories</a></li>
-                            <li><a href="channel.html">Channels</a></li>
+                            <li class="@if(Request::route()->getName() == 'channel.videos') color-active @endif"><a href="{{route('channel.videos', ['user' => Auth::user()->encoded_Id])}}">My Videos</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-6 col-sm-8 col-xs-3">
-                        <form action="http://azyrusthemes.com/circlevideo/search.html" method="post">
+                        <form action="#" method="post">
                             <div class="topsearch">
                                 <i class="cv cvicon-cv-cancel topsearch-close"></i>
                                 <div class="input-group">
@@ -101,7 +100,7 @@
             <div class="mobile-menu-user-img">
                 <img src="{{asset('images/ava11.png') }}" alt="">
             </div>
-            <p>Bailey Fry </p>
+            <p>{{Auth::user()->name}}</p>
             <span class="caret"></span>
         </div>
         <a href="#" class="btn mobile-menu-upload">
@@ -111,65 +110,24 @@
         <div class="mobile-menu-list">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="{{route('backend.dashboard')}}">
                         <i class="cv cvicon-cv-play-circle"></i>
-                        <p>Popular Videos</p>
+                        <p>Home</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="cv cvicon-cv-playlist"></i>
-                        <p>Browse Categories</p>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="mobile-menu-categories">
-                        <li class="color-active">
-                            <a href="#">Pages <span class="caret"></span></a>
-                            <ul>
-                                <li><a href="index-2.html">Home Page</a></li>
-                                <li><a href="single-video.html">Single Video Page</a></li>
-                                <li><a href="single-video-youtube.html">Single Video Youtube Embedded Page</a></li>
-                                <li><a href="single-video-vimeo.html">Single Video Vimeo Embedded Page</a></li>
-                                <li><a href="{{route('videos.create')}}">Upload Video Page</a></li>
-                                <li><a href="upload-edit.html">Upload Video Edit Page</a></li>
-                                <li><a href="search.html">Searched Videos Page</a></li>
-                                <li><a href="channel.html">Single Channel Page</a></li>
-                                <li><a href="channels.html">Channels Page</a></li>
-                                <li><a href="single-video-tabs.html">Single Videos Page With Tabs</a></li>
-                                <li><a href="single-video-playlist.html">Single Videos Page With Playlist</a></li>
-                                <li><a href="history.html">History Page</a></li>
-                                <li><a href="categories.html">Browse Categories Page</a></li>
-                                <li><a href="categories_side_menu.html">Browse Categories Side Menu Page</a></li>
-                                <li><a href="subscription.html">Subscription Page</a></li>
-                                <li><a href="login.html">Login Page</a></li>
-                                <li><a href="signup.html">Signup Page</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="categories.html">Categories</a></li>
-                        <li><a href="channel.html">Channels</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="cv cvicon-cv-liked"></i>
-                        <p>Liked Videos</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="cv cvicon-cv-history"></i>
-                        <p>History</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="cv cvicon-cv-purchased"></i>
-                        <p>Purchased Videos</p>
+                    <a href="{{route('channel.videos', ['user' => Auth::user()->encoded_Id])}}">
+                        <i class="cv cvicon-cv-play-circle"></i>
+                        <p>My Videos</p>
                     </a>
                 </li>
             </ul>
         </div>
-        <a href="#" class="btn mobile-menu-logout">Log out</a>
+        <a href="{{ route('auth.logout') }}" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();"class="btn mobile-menu-logout">Log out</a>
+        <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
 </div>
 
@@ -186,27 +144,11 @@
                     </div>
                     <div class="col-lg-3  col-sm-10 col-xs-12">
                         <div class="h-icons">
-                            <a href="#"><i class="cv cvicon-cv-liked" data-toggle="tooltip" data-placement="top" title="Liked Videos"></i></a>
-                            <a href="#"><i class="cv cvicon-cv-watch-later" data-toggle="tooltip" data-placement="top" title="Watch Later"></i></a>
-                            <a href="#"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="Saved Playlist"></i></a>
-                            <a href="#"><i class="cv cvicon-cv-purchased" data-toggle="tooltip" data-placement="top" title="Purchased Videos"></i></a>
-                            <a href="#"><i class="cv cvicon-cv-history" data-toggle="tooltip" data-placement="top" title="History"></i></a>
+                            <a href="{{route('backend.dashboard')}}"><i class="cv cvicon-cv-history" data-toggle="tooltip" data-placement="top" title="Home"></i></a>
+                            <a href="{{route('channel.videos', ['user' => Auth::user()->encoded_Id])}}"><i class="cv cvicon-cv-play-circle" data-toggle="tooltip" data-placement="top" title="My Video"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-7 col-sm-10 hidden-xs">
-                        <div class="h-resume">
-                            <div class="play-icon">
-                                <a href="#"><i class="cv cvicon-cv-play"></i></a>
-                            </div>
-                            Resume:  <span class="color-default">Daredevil Season 2 : Episode 6 </span>
-                        </div>
-                    </div>
-                    <div class="col-lg-1 col-sm-2 hidden-xs">
-                        <div class="h-grid">
-                            <a href="#"><i class="cv cvicon-cv-grid-view"></i></a>
-                            <a href="#"><i class="cv cvicon-cv-list-view"></i></a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
