@@ -194,15 +194,6 @@
                                     <p>Be the first to comment</p>
                                 @endif
 
-                                <div class="row hidden-xs">
-                                    <div class="col-lg-12">
-                                        <div class="loadmore-comments">
-                                            <form action="#" method="post">
-                                                <button class="btn btn-default h-btn">Load more Comments</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <!-- END comments -->
