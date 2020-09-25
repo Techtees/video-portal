@@ -14,6 +14,7 @@
 * 3.8 Single Video Page
 * 4. Footer
 */
+
 .vertical-align {
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -2074,13 +2075,63 @@ ul.menu ul li:not(:last-child) {
 /*
 * Content Upload
 */
+
+/* u area new */
+
+.upload-page .u-area4 i {
+  font-size: 144px;
+  color: #637076;
+}
+.upload-page .u-area4 i:hover {
+  font-size: 144px;
+  color: #ea2c5a;
+}
+.upload-page .u-area4 {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+.upload-page .u-area-new .u-text1 {
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 0;
+  font-size: 20px;
+  color: #2e2e2e;
+}
+.upload-page .u-area4 .u-text1 {
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 0;
+  font-size: 20px;
+  color: #2e2e2e;
+}
+.upload-page .u-area4 .u-btn {
+  margin-top: 35px;
+  background-color: #ea2c5a;
+  color: white;
+  padding: 15px 65px;
+  border: solid 1px #ea2c5a;
+  height: 48px;
+  border-radius: 24px;
+  font-weight: 500;
+}
+.upload-page .u-area4 .u-btn:hover {
+  color: #ea2c5a;
+  background-color: #ffffff;
+}
+
+
+
+
+
+
+/* end of u area new */
 .upload-page {
   text-align: center;
   color: #7e7e7e;
 }
 .upload-page .u-area {
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding-top: 100px;
+  padding-bottom: 50px;
 }
 .upload-page .u-area i {
   font-size: 144px;
@@ -2088,11 +2139,12 @@ ul.menu ul li:not(:last-child) {
 }
 .upload-page .u-area .u-text1 {
   display: block;
-  margin-top: 60px;
+  margin-top: 40px;
   margin-bottom: 0;
   font-size: 20px;
   color: #2e2e2e;
 }
+
 .upload-page .u-area .u-btn {
   margin-top: 60px;
   background-color: #ea2c5a;
