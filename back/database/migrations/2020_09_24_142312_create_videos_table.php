@@ -18,9 +18,9 @@ class CreateVideosTable extends Migration
             $table->string('source'); #Youtube or file
             $table->unsignedBigInteger('user_id');
             $table->text('video');
-            $table->string('title'); 
-            $table->text('description'); 
-            $table->string('reference'); 
+            $table->string('title')->nullable(); 
+            $table->text('description')->nullable(); 
+            $table->string('reference')->nullable(); 
             $table->timestamps();
             $table->softDeletes();
 
