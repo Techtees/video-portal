@@ -23,9 +23,29 @@
     <!-- font-family: 'Hind', sans-serif; -->
     <link href='https://fonts.googleapis.com/css?family=Hind:400,300,500,600,700|Hind+Guntur:300,400,500,700' rel='stylesheet' type='text/css'>
     <style>
-        input{
-  width: 150px;
-}
+   
+  
+   .dropZoneOverlay, .FileUpload {
+        width: 283px;
+        height: 71px;
+    }
+
+.dropZoneOverlay {
+        border: dotted 1px;
+        font-family: cursive;
+        color: #7066fb;
+        position: absolute;
+        top: 0px;
+        text-align: center;
+    }
+
+    .FileUpload {
+        opacity: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+
     </style>
 </head>
 
@@ -257,17 +277,21 @@
     </div>
 </div>
 <!-- /goto -->
-
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 upload-page">
 
                 <div class="u-area">
-                    <i class="cv cvicon-cv-upload-video"></i>
+                   
+                        <i class="cv cvicon-cv-upload-video " onclick="openFileOption();return;"></i>
+                        <input type="file" id="file1" style="display:none" > 
+                        
+                  
+                    
 
                     <p class="u-text1">Select Video files to upload</p>
-                    <p class="u-text2">or drag and drop video files</p>
+                   
 
                     <form action="#" method="post">
                         <button class="btn btn-primary u-btn">Upload Video</button>
@@ -373,6 +397,14 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/custom.js"></script>
 
+<!-- file upload javascript -->
+
+<script>
+    function openFileOption()
+  {
+    document.getElementById("file1").click();
+  }
+ </script>
 </body>
 
 </html>
