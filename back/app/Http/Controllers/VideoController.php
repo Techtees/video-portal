@@ -55,6 +55,7 @@ class VideoController extends Controller
             }else {
                 $data['youtube'] = $request->get('youtube');
                 $data['source'] = "youtube";
+                $data['video'] = "";
             }
 
             $data["user_id"] = auth()->user()->id;

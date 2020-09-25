@@ -18,7 +18,7 @@
                     <p class="u-text1">Select Video files to upload</p>
                     <p class="u-text2">or enter youtube link</p>
                     <div class="form-group">
-                        <input type="text"  id="" placeholder="https://www.youtube.com/watch?v=W8NUoz6Yd4Y">
+                        <input type="text"  id="" placeholder="https://www.youtube.com/watch?v=W8NUoz6Yd4Y" name="youtube">
                     </div>
                         <button type="submit" class="btn btn-primary u-btn">Upload Video</button>
                     </form>

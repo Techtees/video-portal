@@ -23,7 +23,7 @@
                         </video>
                     @else 
                         <div class="video-responsive">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/9LgeDcu-oho" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="{{$video->youtube}}" frameborder="0" allowfullscreen></iframe>
                         </div>
                     @endif
                 </div>
