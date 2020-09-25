@@ -45,7 +45,7 @@
                         {{Session::get('data')}}
                     </div>
                 @endif
-                <form action="{{route('videos.update', ['video' => $video->id])}}" method="POST">
+                <form action="{{route('videos.update', ['video' => $video->id])}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <div class="u-form">
@@ -60,6 +60,13 @@
                                 <div class="form-group">
                                     <label for="e2">About</label>
                                     <textarea class="form-control" name="e2" id="e2" rows="3" name="description">Description</textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="e2">Thumbnail</label> <br>
+                                    <small>upload a picture that shows what's in your video. A good thumbnail stands out and draws viewers' attention</small>
+                                    <input type="file" class="form-control-file" id="file-input" name="thumbnail">
                                 </div>
                             </div>
                             <div class="col-lg-12">

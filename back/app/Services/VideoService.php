@@ -10,7 +10,7 @@ class VideoService
 {
     public function index()
     {
-        return Video::orderBy('id', 'desc')->paginate(15);
+        return Video::orderBy('id', 'desc')->get();
     }
 
     public function create(array $data)
@@ -31,5 +31,29 @@ class VideoService
     public function destroy(int $video_id)
     {
         return Video::find($video_id)->delete();
+    }
+
+    public function recommendedVideos()
+    {
+        $videosCount = count(Video::orderBy('id','asc')->get());
+        if($videosCount < 6){
+            $data = Video::orderBy('id','asc')->get()->random($videosCount);
+        }else {
+            $data = Video::orderBy('id','asc')->get()->random(6);
+        }
+
+        return $data;
+    }
+
+    public function upNext()
+    {
+        $videosCount = count(Video::orderBy('id','asc')->get());
+        if($videosCount < 3){
+            $data = Video::orderBy('id','asc')->get()->random($videosCount);
+        }else {
+            $data = Video::orderBy('id','asc')->get()->random(3);
+        }
+
+        return $data;
     }
 }

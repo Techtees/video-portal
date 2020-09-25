@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Video;
+use App\Comment;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -53,5 +55,21 @@ class User extends Authenticatable
     public function getEncodedIdAttribute()
     {
         return encodeId($this->id);
+    }
+
+    /**
+    * user has many video
+    */
+    public function video()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    /**
+    * user has many Comment
+    */
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

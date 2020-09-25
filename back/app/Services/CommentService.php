@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentService
 {
-    public function index()
+    public function index(int $video_id)
     {
-        return Comment::orderBy('id', 'desc')->paginate(15);
+        return Comment::where('video_id', $video_id)->orderBy('id', 'desc')->get();
     }
 
     public function create(array $data)

@@ -17,7 +17,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id','video_id', 'comment', 'video'
+        'user_id', 'video_id', 'comment', 'video'
     ];
 
     protected $appends = [

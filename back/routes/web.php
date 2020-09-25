@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,14 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::get(
     '/',
     function () {
-        // return redirect( route('login') );
-        return view('dashboard.video-single');
+        return redirect( route('login') );
+        // return view('dashboard.video-single');
     }
 );
 
 Route::get(
     '/login',
     function () {
+        if (Auth::check())
+            return redirect( route('backend.dashboard') );
+        else
         return view('auth.login');
     }
 )->name('login');
@@ -31,6 +35,9 @@ Route::get(
 Route::get(
     '/register',
     function () {
+        if (Auth::check())
+            return redirect( route('backend.dashboard') );
+        else
         return view('auth.register');
     }
 )->name('register');
@@ -47,6 +54,7 @@ Route::group(
             ->name('backend.dashboard');
         
         Route::resource('videos', 'VideoController');
+        Route::resource('comments', 'CommentController');
 
         Route::post('video-upload', 'VideoController@store')->name('videos.store');
         

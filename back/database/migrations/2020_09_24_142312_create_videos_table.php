@@ -21,6 +21,8 @@ class CreateVideosTable extends Migration
             $table->string('title')->nullable(); 
             $table->text('description')->nullable(); 
             $table->string('reference')->nullable(); 
+            $table->string('views'); 
+            $table->string('thumbnail')->nullable(); 
             $table->timestamps();
             $table->softDeletes();
 

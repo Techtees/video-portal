@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Video;
 use App\Services\VideoService;
+use App\Services\CommentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
-    protected $videoService;
+    protected $videoService, $commentService;
 
-    public function __construct(VideoService $videoService)
+    public function __construct(VideoService $videoService, CommentService $commentService)
     {
         $this->videoService = $videoService;
+        $this->commentService = $commentService;
     }
 
     /**
@@ -44,14 +46,6 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        // return dd(1);
-        // $rules = [
-        //     'source' => 'required',
-        //     'video' => 'required'
-        // ];
-
-        // $this->validate($request, $rules);
-
         try {
             $data = [
                 "source" => $request->get('source')
@@ -62,11 +56,12 @@ class VideoController extends Controller
             }
 
             $data["user_id"] = auth()->user()->id;
+            $data["views"] = 1;
 
             $video = $this->videoService->create($data);
 
             $success = "Video Created";
-            return redirect( route('videos.edit', ['video' => $video->id]) )->with(['data' => $success]);
+            return redirect( route('videos.edit', ['video' => $video->encoded_Id]) )->with(['data' => $success]);
        
         } catch (\Exception $ex) {
             dump($ex);
@@ -81,9 +76,19 @@ class VideoController extends Controller
      */
     public function show($video)
     {
+        $video = decodeId($video);
+
+        $comments = $this->commentService->index($video);
         $video = $this->videoService->find($video);
 
-        return view('dashboard.video-single', compact('video'));
+        $video->views = $video->views + 1;
+        $video->save();
+
+        $recommended_videos = $this->videoService->recommendedVideos();
+        $upnext_videos = $this->videoService->upNext();
+
+
+        return view('dashboard.video-single', compact('video', 'recommended_videos', 'upnext_videos', 'comments'));
     }
 
     /**
@@ -116,6 +121,12 @@ class VideoController extends Controller
                 "description" => $request->get('description'),
                 "reference" => $request->get('reference')
             ];
+
+            if($request->has('thumbnail')){
+                $data['thumbnail'] = $request->thumbnail->store('');
+            }else {
+                $data['thumbnail'] = 'single-video.png';
+            }
 
             $video = $this->videoService->update($id, $data);
             $success = "Video Updated";
