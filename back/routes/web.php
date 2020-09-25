@@ -46,5 +46,9 @@ Route::group(
         Route::get('/dashboard', 'AuthController@index')
             ->name('backend.dashboard');
         
+        Route::resource('videos', 'VideoController');
+
+        Route::post('video-upload', 'VideoController@store')->name('videos.store');
+        
     }
 );

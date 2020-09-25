@@ -40,35 +40,42 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="u-form">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for="e1">Video Title</label>
-                                <input type="text" class="form-control" id="e1" placeholder="Rocket League Pro Championship Gameplay (36 characters remaining)">
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for="e2">About</label>
-                                <textarea class="form-control" name="e2" id="e2" rows="3">Description</textarea>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label for="e2">Reference</label>
-                                <textarea class="form-control" name="e2" id="e2" rows="3">Reference</textarea>
-                            </div>
-                        </div>
+                @if(Session::get('data'))
+                    <div class="alert alert-success">
+                        {{Session::get('data')}}
                     </div>
+                @endif
+                <form action="{{route('videos.update', ['video' => $video->id])}}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="PUT">
+                    <div class="u-form">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="e1">Video Title</label>
+                                    <input type="text" class="form-control" id="e1" placeholder="Rocket League Pro Championship Gameplay (36 characters remaining)" name="title">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="e2">About</label>
+                                    <textarea class="form-control" name="e2" id="e2" rows="3" name="description">Description</textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="e2">Reference</label>
+                                    <textarea class="form-control" name="e2" id="e2" rows="3" name="reference">Reference</textarea>
+                                </div>
+                            </div>
+                        </div>
 
-                </div>
+                    </div>
+                    <div class="u-area mt-small">
+                            <button type="submit" class="btn btn-primary u-btn">Save</button>
+                    </div>
+                </form>
 
-                <div class="u-area mt-small">
-                    <form action="#" method="post">
-                        <button class="btn btn-primary u-btn">Save</button>
-                    </form>
-                </div>
                 <div class="u-terms">
                     <p>By submitting your videos to circle, you acknowledge that you agree to circle's <a href="#">Terms of Service</a> and <a href="#">Community Guidelines</a>.</p>
                     <p class="hidden-xs">Please be sure not to violate others' copyright or privacy rights. Learn more</p>

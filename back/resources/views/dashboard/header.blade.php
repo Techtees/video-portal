@@ -18,28 +18,7 @@
                     </div>
                     <div class="col-lg-3 col-sm-10 hidden-xs">
                         <ul class="list-inline menu">
-                            <li class="color-active">
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li><a href="index-2.html">Home Page</a></li>
-                                    <li><a href="single-video.html">Single Video Page</a></li>
-                                    <li><a href="single-video-youtube.html">Single Video Youtube Embedded Page</a></li>
-                                    <li><a href="single-video-vimeo.html">Single Video Vimeo Embedded Page</a></li>
-                                    <li><a href="upload.html">Upload Video Page</a></li>
-                                    <li><a href="upload-edit.html">Upload Video Edit Page</a></li>
-                                    <li><a href="search.html">Searched Videos Page</a></li>
-                                    <li><a href="channel.html">Single Channel Page</a></li>
-                                    <li><a href="channels.html">Channels Page</a></li>
-                                    <li><a href="single-video-tabs.html">Single Videos Page With Tabs</a></li>
-                                    <li><a href="single-video-playlist.html">Single Videos Page With Playlist</a></li>
-                                    <li><a href="history.html">History Page</a></li>
-                                    <li><a href="categories.html">Browse Categories Page</a></li>
-                                    <li><a href="categories_side_menu.html">Browse Categories Side Menu Page</a></li>
-                                    <li><a href="subscription.html">Subscription Page</a></li>
-                                    <li><a href="login.html">Login Page</a></li>
-                                    <li><a href="signup.html">Signup Page</a></li>
-                                </ul>
-                            </li>
+                            <li class="@if(Request::route()->getName() == 'backend.dashboard') color-active @endif"><a href="{{route('backend.dashboard')}}">Home</a></li>
                             <li><a href="categories.html">Categories</a></li>
                             <li><a href="channel.html">Channels</a></li>
                         </ul>
@@ -73,12 +52,20 @@
                         <div class="selectuser pull-left">
                             <div class="btn-group pull-right dropdown">
                                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    Bailey
+                                    {{Auth::user()->first_name}}
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="signup.html">Sign up</a></li>
+                                    <li>
+                                        <a href="#">{{Auth::user()->name}}</a>
+                                    </li>
+                                    <li>
+                                        <a  href="{{ route('auth.logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -86,7 +73,7 @@
                     </div>
                 </div>
                 <div class="hidden-xs">
-                    <a href="upload.html">
+                    <a href="{{route('videos.create')}}">
                         <div class="upload-button">
                             <i class="cv cvicon-cv-upload-video"></i>
                         </div>
@@ -143,7 +130,7 @@
                                 <li><a href="single-video.html">Single Video Page</a></li>
                                 <li><a href="single-video-youtube.html">Single Video Youtube Embedded Page</a></li>
                                 <li><a href="single-video-vimeo.html">Single Video Vimeo Embedded Page</a></li>
-                                <li><a href="upload.html">Upload Video Page</a></li>
+                                <li><a href="{{route('videos.create')}}">Upload Video Page</a></li>
                                 <li><a href="upload-edit.html">Upload Video Edit Page</a></li>
                                 <li><a href="search.html">Searched Videos Page</a></li>
                                 <li><a href="channel.html">Single Channel Page</a></li>

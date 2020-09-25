@@ -16,8 +16,11 @@
                     <p class="u-text1">Select Video files to upload</p>
                     <p class="u-text2">or drag and drop video files</p>
 
-                    <form action="#" method="post">
-                        <button class="btn btn-primary u-btn">Upload Video</button>
+                    <form method="POST" action="{{ route('videos.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" class="form-control" id="file-input" name="video">
+                        <input type="text" class="form-control" value="file" name="source">
+                        <button type="submit" class="btn btn-primary u-btn">Upload Video</button>
                     </form>
                 </div>
 

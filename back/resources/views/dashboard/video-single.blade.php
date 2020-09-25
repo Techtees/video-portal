@@ -12,13 +12,15 @@
 @endsection
 
 @section('content')
+{{ $video }}
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-xs-12 col-sm-12">
                 <div class="sv-video">
-                    <video poster="images/single-video.png" style="width:100%;height:100%;" controls="controls" width="100%" height="100%">
-                        <source src="videos/video-1.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
+                    <video  style="width:100%;height:100%;" controls="controls" width="100%" height="100%">
+                        <source src="{{asset('media/TvnIH1DrI5A8kaZffydSPdIPXcRYmWGYAEGlRjU6.mp4') }}"></source>
+                        {{-- <source src="{{asset('media/'.$video->video) }}"></source> --}}
                     </video>
                 </div>
                 <h1><a href="#">Analyzing the Mass Effect: Andromeda E3 2016 Trailer</a></h1>
