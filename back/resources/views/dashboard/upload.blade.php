@@ -9,7 +9,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 upload-page">
-
+                @if(Session::get('data'))
+                    <div class="alert alert-danger">
+                        {{Session::get('data')}}
+                    </div>
+                @endif
                 <div class="u-area">
                     <form method="POST" action="{{ route('videos.store') }}" enctype="multipart/form-data">
                         @csrf

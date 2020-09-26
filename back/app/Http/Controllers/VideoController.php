@@ -48,15 +48,25 @@ class VideoController extends Controller
     {
         try {
             $data = [];
+            if($request->youtube == null)
+            {
+                if($request->has('video')){
+                    
+                    $data['video'] = $request->video->store('');
+                    $data['source'] = "file";
+                }else {
+                    $success = "Choose Video or Attach Youtube Link";
+                    return redirect()->back()->with(['data' => $success]);
+                }
+            }
+            else {
 
-            if($request->has('video')){
-                $data['video'] = $request->video->store('');
-                $data['source'] = "file";
-            }else {
                 $data['youtube'] = $request->get('youtube');
                 $data['source'] = "youtube";
                 $data['video'] = "";
             }
+
+            return $request->all();
 
             $data["user_id"] = auth()->user()->id;
             $data["views"] = 1;
