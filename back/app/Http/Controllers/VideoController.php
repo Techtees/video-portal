@@ -66,7 +66,6 @@ class VideoController extends Controller
                 $data['video'] = "";
             }
 
-            return $request->all();
 
             $data["user_id"] = auth()->user()->id;
             $data["views"] = 1;
