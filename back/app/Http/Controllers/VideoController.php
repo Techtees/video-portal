@@ -165,13 +165,12 @@ class VideoController extends Controller
      */
     public function destroy($video)
     {
-        return response("Delete works");
         $video = decodeId($video);
 
         $video = $this->videoService->find($video)->delete();
 
         $success = "Video Deleted";
 
-        return redirect( route('backend.dashboard') )->with(['data' => $success]);
+        return response($success);
     }
 }

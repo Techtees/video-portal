@@ -132,7 +132,7 @@
                 url: video_url,
                 method: "DELETE",
                 success: function (data) {
-                    console.log(data);
+                    window.location.reload();
                 },
                 error: function(err) {
                     console.log(err);
