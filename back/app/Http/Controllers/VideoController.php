@@ -61,7 +61,7 @@ class VideoController extends Controller
             }
             else {
 
-                $data['youtube'] = $request->get('youtube');
+                $data['youtube'] = $this->rewriteYoutubeUrl($request->get('youtube'));
                 $data['source'] = "youtube";
                 $data['video'] = "";
             }
@@ -78,6 +78,15 @@ class VideoController extends Controller
         } catch (\Exception $ex) {
             dump($ex);
         }
+    }
+
+    public function rewriteYoutubeUrl($url)
+    {
+        // Use parse_str() function to parse the query string 
+        parse_str( parse_url( $url, PHP_URL_QUERY ), $youtube_id_v );
+
+        // Display the output 
+        return "https://www.youtube.com/embed/".$youtube_id_v['v'];
     }
 
     /**
@@ -156,12 +165,13 @@ class VideoController extends Controller
      */
     public function destroy($video)
     {
+        return response("Delete works");
         $video = decodeId($video);
 
         $video = $this->videoService->find($video)->delete();
 
         $success = "Video Deleted";
 
-        return redirect( route('videos.index') )->with(['data' => $success]);
+        return redirect( route('backend.dashboard') )->with(['data' => $success]);
     }
 }

@@ -25,13 +25,13 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="e1">Video Title</label>
-                                    <input type="text" class="form-control" id="e1" placeholder="Rocket League Pro Championship Gameplay (36 characters remaining)" name="title">
+                                    <input type="text" class="form-control" id="e1" placeholder="Rocket League Pro Championship Gameplay (36 characters remaining)" name="title" value="{{$video->title}}">
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="e2">About</label>
-                                    <textarea class="form-control" name="e2" id="e2" rows="3" name="description">Description</textarea>
+                                    <textarea class="form-control" id="e2" rows="3" name="description" placeholder="Description">{{$video->description}}</textarea>
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -44,7 +44,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="e2">Reference</label>
-                                    <textarea class="form-control" name="e2" id="e2" rows="3" name="reference">Reference</textarea>
+                                    <textarea class="form-control" id="e2" rows="3" name="reference" placeholder="Reference">{{$video->reference}}</textarea>
                                 </div>
                             </div>
                         </div>

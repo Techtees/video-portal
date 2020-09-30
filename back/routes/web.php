@@ -53,6 +53,9 @@ Route::group(
         Route::get('/dashboard', 'AuthController@index')->name('backend.dashboard');
 
         Route::get('/channel/{user}', 'AuthController@channelVideos')->name('channel.videos');
+
+        Route::get('/channel/{user}/edit', 'AuthController@profileEdit')->name('channel.edit');
+        Route::put('/channel/{user}/edit', 'AuthController@updateProfile')->name('channel.update');
         
         Route::resource('videos', 'VideoController');
         Route::resource('comments', 'CommentController');

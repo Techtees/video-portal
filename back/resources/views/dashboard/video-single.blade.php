@@ -35,7 +35,7 @@
                 </div>
                 <div class="author">
                     <div class="author-head">
-                        <a href="#"><img src="{{asset('images/channel-user.png')}}" alt="" class="sv-avatar"></a>
+                        <a href="#"><img src="{{ $video->user->photo }}" alt="" class="sv-avatar"></a>
                         <div class="sv-name">
                             <div><a href="#">{{$video->user->name}}</a> . {{$video->user->video->count()}} Videos</div>
 
@@ -113,7 +113,7 @@
                             </a>
                             <a href="#" data-toggle=".comments">
                                 <i class="cv cvicon-cv-comment"></i>
-                                <span>236 Comments</span>
+                                <span>{{$comments->count()}} Comments</span>
                             </a>
                         </div>
                         <div class="similar-v single-video video-mobile-02">
@@ -152,7 +152,7 @@
                         <div class="comments">
                             <div class="reply-comment">
                                 <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold">{{$comments->count()}}</span> Comments</div>
-                                <div class="rc-ava"><a href="#"><img src="{{ asset('images/ava5.png') }}" alt=""></a></div>
+                                <div class="rc-ava"><a href="#"><img src="{{ Auth::user()->photo }}" alt=""></a></div>
                                 <div class="rc-comment">
                                     <form action="{{route('comments.store')}}" method="POST" >
                                         @csrf

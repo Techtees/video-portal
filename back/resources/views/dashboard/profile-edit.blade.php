@@ -1,7 +1,7 @@
 @extends('dashboard.template')
 
 @section('page-title')
-    Channel
+    Edit Channel
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                 <img src="{{asset('images/channel-banner.png')}}" alt="" class="c-banner">
             </div>
             <div class="c-avatar">
-                <a href="#"><img src="{{ Auth::user()->photo }}" alt="" style="width: 176px; height:157px;"></a>
+                <a href="#"><img src="{{Auth::user()->photo}}" alt="" style="width: 176px; height:157px;"></a>
             </div>
             <a href="#" class="add"><i class="cv cvicon-cv-plus"></i></a>
             {{-- <div class="c-social hidden-xs">
@@ -71,16 +71,13 @@
                         <div class="row">
                             <div class="col-lg-8 col-xs-6">
                                 <div class="btn-group bg-clean">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Uploads <span class="caret"></span>
-                                    </button>
-                                    {{-- <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu">
                                         <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                    </ul> --}}
+                                    </ul>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -93,13 +90,13 @@
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Date Added ( Newest ) <span class="caret"></span>
                                     </button>
-                                    {{-- <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu">
                                         <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                    </ul> --}}
+                                    </ul>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -108,28 +105,37 @@
                     </div>
                     <div class="cb-content videolist">
                         <div class="row">
-
-                            @if($videos->count() > 0)
-                                @foreach($videos as $video)
-                                <div class=" col-lg-3 col-sm-6 videoitem">
-                                    <div class="b-video">
-                                        <div class="v-img" id="{{$video->encoded_Id}}">
-                                            <a href="{{route('videos.show', ['video' => $video->encoded_Id])}}"><img src="{{$video->thumbnail}}" alt="{{$video->title}}" style="width:270px;height:169px"></a>
-                                            <div class="time">3:50</div>
-                                        </div>
-                                        <div class="v-desc">
-                                            <a href="{{route('videos.show', ['video' => $video->encoded_Id])}}">{{$video->title}}</a>
-                                        </div>
-                                        <div class="v-views">
-                                            {{$video->views}} views. 
-                                        </div>
+                            <div class="col-lg-12">
+                                @if(Session::get('data'))
+                                    <div class="alert alert-success">
+                                        {{Session::get('data')}}
                                     </div>
-                                </div>
-                                @endforeach
-                            @else 
-                                <p>Be the first to upload</p>
-                            @endif
-
+                                @endif
+                                <form action="{{route('channel.update', ['user' => $user->id])}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <div class="u-form">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="e1">Full name</label>
+                                                    <input type="text" class="form-control" id="e1" placeholder="Full name" name="name" value="{{$user->name}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label for="e2">Profile Photo</label> <br>
+                                                    <input type="file" class="form-control-file" id="file-input" name="photo">
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                    </div>
+                                    <div class="u-area mt-small">
+                                            <button type="submit" class="btn btn-primary u-btn">Save</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -139,69 +145,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('scripts')
-<script>
-    $( document ).ready(function() {
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Home page
-    // Video block hover
-    var $plus = $( '<div class="plus"><i class="cvicon-cv-plus" aria-hidden="true"></i></div>' );
-    // var $plusDetails = $(  );
-
-    $(".videolist .v-img").hover( function() {
-            $(this).append($plus);
-            var plus = $(this);
-            var plus_id = plus.attr("id");
-            $(".plus").hover( function() {
-                var video_url = '{{ route("videos.edit", ["video"=> ":video_id"] ) }}';
-                    video_url = video_url.replace(':video_id', plus_id);
-
-                    $(this).parent().append(
-                        `<div class="plus-details">\
-                            <ul >\
-                                <li><a href="${video_url}"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Edit</a></li>\
-                                <li><a href="#" onclick="deleteVideo(${plus_id})"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Delete</a></li>\
-                            </ul>\
-                        </div>`
-
-                    );
-                } , function(){
-
-                }
-            );
-
-        } , function(){
-            $(this).find(".plus").remove();
-            $(this).find(".plus-details").remove();
-        }
-    );
-
-   
-    });
-
-    function deleteVideo(video) {
-        console.log(video.id)
-        var video_url = '{{ route("videos.destroy", ["video"=> ":video_id"] ) }}';
-            video_url = video_url.replace(':video_id', video.id);
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }	
-                });
-            $.ajax({
-                url: video_url,
-                method: "DELETE",
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            })
-    }
-
-</script>
 @endsection

@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'photo'
     ];
 
     protected $appends = [
@@ -55,6 +55,11 @@ class User extends Authenticatable
     public function getEncodedIdAttribute()
     {
         return encodeId($this->id);
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        return url('media/'.$value);
     }
 
     /**

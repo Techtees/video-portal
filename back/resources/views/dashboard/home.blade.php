@@ -31,13 +31,13 @@
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Sort by <span class="caret"></span>
                                     </button>
-                                    <ul class="dropdown-menu">
+                                    {{-- <ul class="dropdown-menu">
                                         <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
                                         <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                    </ul>
+                                    </ul> --}}
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -49,9 +49,9 @@
                                 @foreach($videos as $video)
                                 <div class="col-lg-3 col-sm-6 videoitem">
                                     <div class="b-video">
-                                        <div class="v-img">
+                                        <div class="v-img" id="{{$video->encoded_Id}}">
                                             <a href="{{route('videos.show', ['video' => $video->encoded_Id])}}"><img src="{{$video->thumbnail}}" alt="{{$video->title}}" style="width:270px;height:169px "></a>
-                                            <div class="time">3:50</div>
+                                            {{-- <div class="time">3:50</div> --}}
                                         </div>
                                         <div class="v-desc">
                                             <a href="{{route('videos.show', ['video' => $video->encoded_Id])}}">{{$video->title}}</a>
@@ -76,4 +76,69 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $( document ).ready(function() {
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Home page
+    // Video block hover
+    var $plus = $( '<div class="plus"><i class="cvicon-cv-plus" aria-hidden="true"></i></div>' );
+    // var $plusDetails = $(  );
+
+    $(".videolist .v-img").hover( function() {
+            $(this).append($plus);
+            var plus = $(this);
+            var plus_id = plus.attr("id");
+            $(".plus").hover( function() {
+                var video_url = '{{ route("videos.edit", ["video"=> ":video_id"] ) }}';
+                    video_url = video_url.replace(':video_id', plus_id);
+
+                    $(this).parent().append(
+                        `<div class="plus-details">\
+                            <ul >\
+                                <li><a href="${video_url}"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Edit</a></li>\
+                                <li><a href="#" onclick="deleteVideo(${plus_id})"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Delete</a></li>\
+                            </ul>\
+                        </div>`
+
+                    );
+                } , function(){
+
+                }
+            );
+
+        } , function(){
+            $(this).find(".plus").remove();
+            $(this).find(".plus-details").remove();
+        }
+    );
+
+   
+    });
+
+    function deleteVideo(video) {
+        console.log(video.id)
+        var video_url = '{{ route("videos.destroy", ["video"=> ":video_id"] ) }}';
+            video_url = video_url.replace(':video_id', video.id);
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }	
+                });
+            $.ajax({
+                url: video_url,
+                method: "DELETE",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            })
+    }
+
+</script>
 @endsection

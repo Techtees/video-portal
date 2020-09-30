@@ -10,6 +10,7 @@ use App\Services\VideoService;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -60,6 +61,7 @@ class AuthController extends Controller
 
             # hash password
             $data["password"] = Hash::make($data["password"]);
+            $data["photo"] = "noimage.png";
 
             # create user
             $user = $this->userService->create($data);
@@ -93,5 +95,40 @@ class AuthController extends Controller
         $videos = $this->videoService->findUserVideos($user);
         $user = $this->userService->find($user);
         return view('dashboard.channel', compact('user', 'videos'));
+    }
+
+    public function profileEdit($user)
+    {
+        $user = decodeId($user);  
+
+        $user = $this->userService->find($user);
+
+        return view('dashboard.profile-edit', compact('user'));
+    }
+
+    public function updateProfile(Request $request, $user)
+    {
+        $rules = [
+            'name' => 'required',
+            'photo' => 'file'
+        ];
+
+        $user = decodeId($user);  
+
+        $user = $this->userService->find($user);
+
+        $user->name =  $request->name;
+
+        if($request->has('photo')) {
+            $user->photo =  $request->photo->store('');                
+        }
+
+        $user->save();
+
+        $success = "Profile Updated";
+
+        return redirect( route('channel.videos', ['user' => $user->id]) )->with('data', $success);
+        
+        
     }
 }

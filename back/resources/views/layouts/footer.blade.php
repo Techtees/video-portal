@@ -26,7 +26,7 @@
                         <ul class="list-inline">
                             <li><a href="#">Terms</a></li>
                             <li><a href="#">Privacy</a></li>
-                            <li>Copyrights 2016 <a href="azyrusthemes.html" class="hidden-xs">azyrusthemes.com</a></li>
+                            <li>Copyrights 2020 <a href="#" class="hidden-xs">azyrusthemes.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,13 +43,13 @@
                                 <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Language <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu">
+                                {{-- <ul class="dropdown-menu">
                                     <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
                                     <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
                                     <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
                                     <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
                                     <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                </ul>
+                                </ul> --}}
                             </div>
                         </div>
                         <div class="clearfix"></div>

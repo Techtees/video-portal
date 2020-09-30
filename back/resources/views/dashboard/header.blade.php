@@ -11,7 +11,7 @@
                         <a href="#" class="btn-menu-toggle"><i class="cv cvicon-cv-menu"></i></a>
                     </div>
                     <div class="col-lg-1 col-sm-2 col-xs-6">
-                        <a class="navbar-brand" href="index-2.html">
+                        <a class="navbar-brand" href="{{route('backend.dashboard')}}">
                             <img src="{{asset('images/logo.svg') }}" alt="Project name" class="logo" />
                             <span>Circle</span>
                         </a>
@@ -31,13 +31,13 @@
                                     <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="cv cvicon-cv-video-file"></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span></button>/
-                                        <ul class="dropdown-menu">
+                                        {{-- <ul class="dropdown-menu">
                                             <li><a href="#"><i class="cv cvicon-cv-relevant"></i> Relevant</a></li>
                                             <li><a href="#"><i class="cv cvicon-cv-calender"></i> Recent</a></li>
                                             <li><a href="#"><i class="cv cvicon-cv-view-stats"></i> Viewed</a></li>
                                             <li><a href="#"><i class="cv cvicon-cv-star"></i> Top Rated</a></li>
                                             <li><a href="#"><i class="cv cvicon-cv-watch-later"></i> Longest</a></li>
-                                        </ul>
+                                        </ul> --}}
                                     </div><!-- /btn-group -->
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-lg-2 col-sm-4 hidden-xs">
                         <div class="avatar pull-left">
-                            <img src="{{asset('images/avatar.png') }}" alt="avatar" />
+                            <img src="{{Auth::user()->photo }}" alt="avatar" style="width: 50px; height:44px;"/>
                             <span class="status"></span>
                         </div>
                         <div class="selectuser pull-left">
@@ -56,7 +56,12 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">{{Auth::user()->name}}</a>
+                                        <a href="{{route('channel.videos', ["user" => Auth::user()->encoded_Id])}}">{{Auth::user()->name}}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{route('channel.edit', ["user" => Auth::user()->encoded_Id])}}">
+                                            Edit Profile
+                                        </a>
                                     </li>
                                     <li>
                                         <a  href="{{ route('auth.logout') }}" onclick="event.preventDefault();
@@ -87,7 +92,7 @@
 <div class="mobile-menu">
     <div class="mobile-menu-head">
         <a href="#" class="mobile-menu-close"></a>
-        <a class="navbar-brand" href="index-2.html">
+        <a class="navbar-brand" href="{{route('backend.dashboard')}}">
             <img src="{{asset('images/logo.svg') }}" alt="Project name" class="logo" />
             <span>Circle</span>
         </a>
@@ -98,7 +103,7 @@
     <div class="mobile-menu-content">
         <div class="mobile-menu-user">
             <div class="mobile-menu-user-img">
-                <img src="{{asset('images/ava11.png') }}" alt="">
+                <img src="{{Auth::user()->photo}}" alt="" style="width: 70px; height:62px;">
             </div>
             <p>{{Auth::user()->name}}</p>
             <span class="caret"></span>
@@ -113,6 +118,12 @@
                     <a href="{{route('backend.dashboard')}}">
                         <i class="cv cvicon-cv-play-circle"></i>
                         <p>Home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('channel.edit', ["user" => Auth::user()->id])}}">
+                        <i class="cv cvicon-cv-play-circle"></i>
+                        <p>Edit Profile</p>
                     </a>
                 </li>
                 <li>
