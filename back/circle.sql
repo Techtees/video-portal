@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 25, 2020 at 07:18 PM
+-- Generation Time: Sep 30, 2020 at 08:09 AM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.8
 
@@ -37,13 +37,6 @@ CREATE TABLE `comments` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `user_id`, `video_id`, `video`, `comment`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, NULL, 'lovely video', '2020-09-25 18:14:50', '2020-09-25 18:14:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -94,6 +87,7 @@ CREATE TABLE `users` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -104,8 +98,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'John Doe', 'admin@admin.com', NULL, '$2y$10$6rYX1ueeRK.UWjwPev8p7./l6pX70WXNhGGiCVmwKxqXP0vR1RKLG', NULL, '2020-09-25 18:13:58', '2020-09-25 18:13:58', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `photo`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'John Doe!!', 'admin@admin.com', NULL, '$2y$10$Qn.Fp8VkgkYJxBjBz0jrVOfNz5q4cphi1nKVFnTYgVlniJT9plXr6', 'rRAYKv9etPA64WcaEkZ0XcDFITdWuaDOlY5JXopx.jpeg', NULL, '2020-09-30 06:31:47', '2020-09-30 06:54:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -134,8 +128,7 @@ CREATE TABLE `videos` (
 --
 
 INSERT INTO `videos` (`id`, `source`, `user_id`, `video`, `title`, `description`, `reference`, `views`, `thumbnail`, `youtube`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'file', 1, 'RoTXBsQu6mg8gf8DmiVujlAgtwLqxtXq8Q7rgrxM.mp4', 'Video Title', NULL, NULL, '4', '0VufSVN1Q7JuKc0VI4i2g6k5Xqui2Q3L6pBWz5I4.png', NULL, '2020-09-25 18:14:12', '2020-09-25 18:14:50', NULL),
-(2, 'youtube', 1, '', 'Youtube Link', NULL, NULL, '3', 'fUmno8ARlDoQcPtzs5h1RMHFlPa3eMhS1BItZjn5.png', 'https://www.youtube.com/embed/ZengOKCUBHo', '2020-09-25 18:15:10', '2020-09-25 18:18:24', NULL);
+(1, 'file', 1, 'norjLTUIp6wYgCMiO4K5hQrH5XY71FqzaDC0tr2q.mp4', 'Julliet', 'Here goes my description', 'Here is my reference', '12', 'single-video.png', NULL, '2020-09-30 06:36:41', '2020-09-30 06:55:47', NULL);
 
 --
 -- Indexes for dumped tables
@@ -183,7 +176,7 @@ ALTER TABLE `videos`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -207,7 +200,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
