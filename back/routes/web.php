@@ -61,6 +61,7 @@ Route::group(
         Route::resource('comments', 'CommentController');
 
         Route::post('video-upload', 'VideoController@store')->name('videos.store');
+        Route::get('videosdelete/{video}', 'VideoController@destroy')->name('videos.destroy');
         
     }
 );

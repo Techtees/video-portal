@@ -93,13 +93,15 @@
             var plus_id = plus.attr("id");
             $(".plus").hover( function() {
                 var video_url = '{{ route("videos.edit", ["video"=> ":video_id"] ) }}';
+                var video_url_del = '{{ route("videos.destroy", ["video"=> ":video_id"] ) }}';
                     video_url = video_url.replace(':video_id', plus_id);
+                    video_url_del = video_url_del.replace(':video_id', plus_id);
 
                     $(this).parent().append(
                         `<div class="plus-details">\
                             <ul >\
                                 <li><a href="${video_url}"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Edit</a></li>\
-                                <li><a href="#" onclick="deleteVideo(${plus_id})"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Delete</a></li>\
+                                <li><a href="${video_url_del}"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Delete</a></li>\
                             </ul>\
                         </div>`
 
@@ -117,28 +119,6 @@
 
    
     });
-
-    function deleteVideo(video) {
-        console.log(video.id)
-        var video_url = '{{ route("videos.destroy", ["video"=> ":video_id"] ) }}';
-            video_url = video_url.replace(':video_id', video.id);
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }	
-                });
-            $.ajax({
-                url: video_url,
-                method: "DELETE",
-                success: function (data) {
-                    window.location.reload();
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            })
-    }
 
 </script>
 @endsection

@@ -171,6 +171,6 @@ class VideoController extends Controller
 
         $success = "Video Deleted";
 
-        return response($success);
+        return redirect()->back();
     }
 }
