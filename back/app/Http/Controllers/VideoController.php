@@ -167,10 +167,17 @@ class VideoController extends Controller
     {
         $video = decodeId($video);
 
-        $video = $this->videoService->find($video)->delete();
+        $video = $this->videoService->find($video);
+        if($video->user_id == auth()->user()->id)
+        {
+            $video->delete();
+            $success = "Video Deleted";
+    
+            return redirect()->back()->with(['data' => $success]);
+        }else {
+            $success = "UnAuthorized Access";
+            return redirect()->back()->with(['data' => $success]);
+        }
 
-        $success = "Video Deleted";
-
-        return redirect()->back();
     }
 }

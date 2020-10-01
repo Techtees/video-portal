@@ -9,7 +9,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-
+                @if(Session::get('data'))
+                    <div class="alert alert-success">
+                        {{Session::get('data')}}
+                    </div>
+                @endif
                 <!-- Featured Videos -->
                 <div class="content-block head-div">
                     <div class="cb-header">
