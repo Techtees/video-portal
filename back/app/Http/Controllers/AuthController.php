@@ -80,7 +80,7 @@ class AuthController extends Controller
     {
         # logout
         Auth::logout();
-        return redirect()->intended('login');
+        return redirect()->intended('dashboard');
     }
 
     public function index()
