@@ -152,17 +152,19 @@
                         <div class="comments">
                             <div class="reply-comment">
                                 <div class="rc-header"><i class="cv cvicon-cv-comment"></i> <span class="semibold">{{$comments->count()}}</span> Comments</div>
-                                <div class="rc-ava"><a href="#"><img src="{{ Auth::user()->photo }}" alt=""></a></div>
-                                <div class="rc-comment">
-                                    <form action="{{route('comments.store')}}" method="POST" >
-                                        @csrf
-                                        <input type="hidden" name="video_id" value="{{ $video->id }}" required>
-                                        <textarea rows="3" name="comment" required>Share what you think?</textarea>
-                                        <button type="submit">
-                                            <i class="cv cvicon-cv-add-comment"></i>
-                                        </button>
-                                    </form>
-                                </div>
+                                @if(Auth::check())
+                                    <div class="rc-ava"><a href="#"><img src="{{ Auth::user()->photo }}" alt=""></a></div>
+                                    <div class="rc-comment">
+                                        <form action="{{route('comments.store')}}" method="POST" >
+                                            @csrf
+                                            <input type="hidden" name="video_id" value="{{ $video->id }}" required>
+                                            <textarea rows="3" name="comment" required>Share what you think?</textarea>
+                                            <button type="submit">
+                                                <i class="cv cvicon-cv-add-comment"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
                                 <div class="clearfix"></div>
                             </div>
                             <div class="comments-list">
@@ -191,7 +193,12 @@
                                     <!-- END comment -->
                                     @endforeach
                                 @else 
-                                    <p>Be the first to comment</p>
+                                    @if(Auth::check())
+                                        <p>Be the first to comment</p>
+                                    @else 
+                                        <p>Login to comment</p>
+                                    @endif
+
                                 @endif
 
                             </div>

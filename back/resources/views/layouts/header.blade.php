@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-lg-3 col-sm-10 hidden-xs">
                         <ul class="list-inline menu">
-                            <li><a href="#">Channels</a></li>
+                            <li><a href="{{route('backend.dashboard')}}" class="color-active">Home</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-6 col-sm-8 col-xs-3">

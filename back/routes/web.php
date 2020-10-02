@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get(
     '/',
     function () {
-        return redirect( route('register') );
+        return redirect( route('backend.dashboard') );
         // return view('dashboard.video-single');
     }
 );
@@ -46,18 +46,22 @@ Route::post('/register', 'AuthController@register')->name('auth.register');
 Route::post('/login', 'AuthController@login')->name('auth.login');
 Route::post('/logout', 'AuthController@logout')->name('auth.logout');
 
+// Route Affliated to User and Guest
+Route::get('/dashboard', 'AuthController@index')->name('backend.dashboard');
+
+Route::get('video/{video}', 'VideoController@show')->name('videos.show');
+
 Route::group(
     ['middleware' => ['auth']],
     function () {
 
-        Route::get('/dashboard', 'AuthController@index')->name('backend.dashboard');
 
         Route::get('/channel/{user}', 'AuthController@channelVideos')->name('channel.videos');
 
         Route::get('/channel/{user}/edit', 'AuthController@profileEdit')->name('channel.edit');
         Route::put('/channel/{user}/edit', 'AuthController@updateProfile')->name('channel.update');
         
-        Route::resource('videos', 'VideoController');
+        Route::resource('videos', 'VideoController', ['except' => ['show']]);
         Route::resource('comments', 'CommentController');
 
         Route::post('video-upload', 'VideoController@store')->name('videos.store');

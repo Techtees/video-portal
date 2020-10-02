@@ -28,8 +28,11 @@
 </head>
 
 <body class="@if(Request::route()->getName() == 'videos.show') single-video  @endif @if(Request::route()->getName() == 'channel.videos' || Request::route()->getName() == 'channel.edit') channel @endif light">
-
-    @include('dashboard.header')
+    @if(Auth::check())
+        @include('dashboard.header')
+    @else 
+        @include('layouts.header')
+    @endif
 
     @yield('content')
 

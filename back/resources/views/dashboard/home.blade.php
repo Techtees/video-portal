@@ -90,36 +90,39 @@
     // Video block hover
     var $plus = $( '<div class="plus"><i class="cvicon-cv-plus" aria-hidden="true"></i></div>' );
     // var $plusDetails = $(  );
+    var auth_check = "{{Auth::check()}}";
 
-    $(".videolist .v-img").hover( function() {
-            $(this).append($plus);
-            var plus = $(this);
-            var plus_id = plus.attr("id");
-            $(".plus").hover( function() {
-                var video_url = '{{ route("videos.edit", ["video"=> ":video_id"] ) }}';
-                var video_url_del = '{{ route("videos.destroy", ["video"=> ":video_id"] ) }}';
-                    video_url = video_url.replace(':video_id', plus_id);
-                    video_url_del = video_url_del.replace(':video_id', plus_id);
+    if(auth_check){
+        $(".videolist .v-img").hover( function() {
+                $(this).append($plus);
+                var plus = $(this);
+                var plus_id = plus.attr("id");
+                $(".plus").hover( function() {
+                    var video_url = '{{ route("videos.edit", ["video"=> ":video_id"] ) }}';
+                    var video_url_del = '{{ route("videos.destroy", ["video"=> ":video_id"] ) }}';
+                        video_url = video_url.replace(':video_id', plus_id);
+                        video_url_del = video_url_del.replace(':video_id', plus_id);
 
-                    $(this).parent().append(
-                        `<div class="plus-details">\
-                            <ul >\
-                                <li><a href="${video_url}"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Edit</a></li>\
-                                <li><a href="${video_url_del}"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Delete</a></li>\
-                            </ul>\
-                        </div>`
+                        $(this).parent().append(
+                            `<div class="plus-details">\
+                                <ul >\
+                                    <li><a href="${video_url}"><i class="cvicon-cv-watch-later" aria-hidden="true"></i> Edit</a></li>\
+                                    <li><a href="${video_url_del}"><i class="cvicon-cv-playlist" aria-hidden="true"></i> Delete</a></li>\
+                                </ul>\
+                            </div>`
 
-                    );
-                } , function(){
+                        );
+                    } , function(){
 
-                }
-            );
+                    }
+                );
 
-        } , function(){
-            $(this).find(".plus").remove();
-            $(this).find(".plus-details").remove();
-        }
-    );
+            } , function(){
+                $(this).find(".plus").remove();
+                $(this).find(".plus-details").remove();
+            }
+        );
+    }
 
    
     });
